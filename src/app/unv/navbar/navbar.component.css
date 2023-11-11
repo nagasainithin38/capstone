@@ -1,0 +1,9 @@
+.active{
+    background-color: blue;
+    border-radius: 10px;
+    
+}
+
+.nav-link{
+    text-align: center;
+}

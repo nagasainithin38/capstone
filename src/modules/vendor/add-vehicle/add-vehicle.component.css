@@ -1,0 +1,12 @@
+.form{
+    padding:10px;
+    background-color: #f3f3f3;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width:495px) {
+    .w-sm-100{
+        width: 100%;;
+    }
+}

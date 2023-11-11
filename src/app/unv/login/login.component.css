@@ -1,0 +1,9 @@
+.img{
+    width:22rem
+}
+
+@media screen and (max-width:490px) {
+    .img{
+        display: none;
+    }
+}
