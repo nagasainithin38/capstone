@@ -1,0 +1,11 @@
+.form-signin{
+    background-color:#f4f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width:495px) {
+    .w-sm-100{
+        width: 100%;;
+    }
+}

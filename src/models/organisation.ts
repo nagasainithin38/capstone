@@ -1,6 +1,6 @@
 export interface Organisation{
 id?: any
-verificationStatus: string
+verificationStatus?: string
 username: string
 address: string   
 vendorAssigned: boolean

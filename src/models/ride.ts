@@ -1,5 +1,5 @@
 export interface Ride {
-    Id: any;
+    Id?: any;
     rideStatus: RideStatus;
     from: string; 
     to: string; 
@@ -7,6 +7,7 @@ export interface Ride {
     end: string; 
     date: string; 
     passengerList: string[]; 
+    mid:string
 }
 
-enum RideStatus { PENDING = 'PENDING', CONFIRMED = 'CONFIRMED', CANCELLED = 'CANCELLED', }
+export enum RideStatus { PENDING = 'PENDING', CONFIRMED = 'CONFIRMED', CANCELLED = 'CANCELLED', }

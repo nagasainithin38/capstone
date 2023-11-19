@@ -6,6 +6,7 @@ import { HttpService } from 'src/services/http.service';
 import { ReqStatus } from 'src/models/statMsg';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/services/login.service';
 
 @Component({
   selector: 'app-side-navbar',
@@ -22,30 +23,19 @@ export class SideNavbarComponent implements OnInit {
     );
 
 role!:string
+
 isLoading:boolean=false
-constructor(private http:HttpService,private toast:ToastrService,private router:Router){
+constructor(private http:HttpService,private toast:ToastrService,private router:Router,public loggedInUser:LoginService){
 
 }
   ngOnInit(): void {
     this.role=localStorage.getItem('role')??""
+ 
   }
 
 logout(){
   this.isLoading=true
-  this.http.logout().subscribe(
-    (status)=>{
-      if(status.status==ReqStatus.SUCCESS){
-        localStorage.clear()
-        this.isLoading=false
-        this.router.navigateByUrl("/unv/login")
-      }
-      else{
-        this.isLoading=false
-        this.toast.warning(status.message)
-      }
-    },
-    ()=>{}
-  )
+ this.loggedInUser.logout();
 }
 
 

@@ -1,0 +1,30 @@
+<div *ngIf="!isLoading&&c!=0">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of bookDetails;let index=index">
+            <th scope="row">{{index+1}}</th>
+            <td>{{booking.from}}</td>
+            <td>{{booking.to}} </td>
+            
+          </tr>
+        
+
+        </tbody>
+      </table>
+
+</div>
+<div class="display-6 text-center bg-dark text-primary" *ngIf="c==0">
+  NO Current Ride
+</div>
+<button class="btn btn-danger" (click)="endRide()" *ngIf="c==1"> End ride</button>
+<div *ngIf="isLoading" class="d-flex justify-content-center">
+    <mat-spinner></mat-spinner>
+</div>

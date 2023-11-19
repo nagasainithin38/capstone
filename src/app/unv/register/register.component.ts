@@ -27,7 +27,7 @@ export class RegisterComponent {
       name: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required),
       re_password: new FormControl("", Validators.required),
-      phoneNumber: new FormControl("", Validators.required),
+      number: new FormControl("", Validators.required),
       username: new FormControl("", Validators.required),
       email: new FormControl("", Validators.required),
       code: new FormControl("", Validators.required),
@@ -48,7 +48,7 @@ export class RegisterComponent {
       this.toast.warning("Name is required")
       return
     }
-    if (!this.signInForm.get("phoneNumber")?.valid) {
+    if (!this.signInForm.get("number")?.valid) {
       this.toast.warning("Phone number is required")
       return
     }
@@ -84,19 +84,19 @@ export class RegisterComponent {
       let address = this.signInForm.get("address")?.value
       let bt = this.signInForm.get("bt")?.value
       let description = this.signInForm.get("description")?.value
-      if (pincode.lengt == 0) {
+      if (pincode.length == 0) {
         this.toast.warning("Pincode is required")
         return
       }
-      if (address.lengt == 0) {
+      if (address.length == 0) {
         this.toast.warning("address is required")
         return
       }
-      if (bt.lengt == 0) {
+      if (bt.length == 0) {
         this.toast.warning("Business Type is required")
         return
       }
-      if (description.lengt == 0) {
+      if (description.length == 0) {
         this.toast.warning("Description is required")
         return
       }
@@ -116,7 +116,7 @@ export class RegisterComponent {
       password: this.signInForm.get("password")?.value,
       name: this.signInForm.get("name")?.value,
       email: this.signInForm.get("email")?.value,
-      number: this.signInForm.get("number")?.value,
+      number: this.signInForm.get("number")?.value.toString(),
       role: this.roleChecked,
       Object_id: null,
       image: "",

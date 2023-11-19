@@ -1,28 +1,44 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+ 
+  <mat-sidenav  #drawer class="sidenav" fixedInViewport 
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>{{loggedInUser.user.userr?.username}} </mat-toolbar>
     <mat-nav-list *ngIf="role=='admin'">
-      <a mat-list-item >admin</a>
+      <!-- <a mat-list-item routerLink="">admin</a> -->
+      <a mat-list-item routerLink="/v/admin/pending/org">Pending organisations</a>
+      <a mat-list-item routerLink="/v/admin/pending/vendors">Pending Vendor</a>
+      <a mat-list-item routerLink="/v/admin/approved/org">Approved organisations</a>
+      <a mat-list-item routerLink="/v/admin/approved/vendors">Approved Vendors</a>
+      <a mat-list-item routerLink="/v/admin/map">Map Vendor Organisations</a>
+      <a mat-list-item routerLink="/v/admin/assigned">Manage mapping</a>
       <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
-    <mat-nav-list *ngIf="role=='vendor'">
-      <a mat-list-item routerLink="/v/vendor/home" >Home</a>
-      <a mat-list-item routerLink="/v/vendor/add">Add vehicles</a>
+    <mat-nav-list *ngIf="role=='vendor' ">
+      <a mat-list-item   routerLink="/v/vendor/home" >Home</a>
+      <a mat-list-item   routerLink="/v/vendor/add">Add vehicles</a>
+      <a mat-list-item   routerLink="/v/vendor/vehicles"> vehicles List</a>
+      <a mat-list-item   routerLink="/v/vendor/createRide">Create ride</a>
       <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
     <mat-nav-list *ngIf="role=='vehicle'">
-      <a mat-list-item >vehicle</a>
+      <a mat-list-item   routerLink="/v/vehicle/home">vehicle</a>
+      <a mat-list-item   routerLink="/v/vehicle/upcoming">Upcoming rides</a>
+      <a mat-list-item   routerLink="/v/vehicle/completedrides">Completed rides</a>
+      <a mat-list-item   routerLink="/v/vehicle/currRide">Current ride</a>
       <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
     <mat-nav-list *ngIf="role=='organisation'">
-      <a mat-list-item >organisation</a>
+      <a mat-list-item   routerLink="/v/organisation/home">organisation</a>
+      <a mat-list-item routerLink="/v/organisation/emp">Employee list</a>
+      <a mat-list-item   routerLink="/v/organisation/add" >Add Employee</a>
       <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
     <mat-nav-list *ngIf="role=='employee'">
-      <a mat-list-item >employee</a>
+      <a mat-list-item  routerLink="/v/employee/home" >employee</a>
+      <a mat-list-item   routerLink="/v/employee/toHome">Book cab to home</a>
+      <a mat-list-item  routerLink="/v/employee/completedBookings">Completed Bookings</a>
       <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>

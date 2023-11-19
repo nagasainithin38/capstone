@@ -1,11 +1,13 @@
 export interface Booking{
-    Id:any;
-    MID: string;
+    Id?:any;
+    mid?: string;
+    MID?:string;
     organisationUsername: string;
-    date: string;
-    status: BookingStatus;
-    from: string;
-    to: string;
+    date?: string;
+    status?: BookingStatus;
+    from?: string;
+    to?: string;
+    vehicleUsername?:string
 }
 export enum BookingStatus {
 

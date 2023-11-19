@@ -1,0 +1,22 @@
+<div class="sc-hidden"> 
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Organisation name</th>
+        <th scope="col">Vendor name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of data;let index=index">
+        <th scope="row">{{index+1}} </th>
+        <td>{{x.username}} </td>
+        <td>{{x.vendorUsername}} </td>
+        <td><button class="btn btn-danger"(click)="unassign(x.username,index)" >Unassign</button> </td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,32 @@
+<div *ngIf="!isLoading" class="sc-hidden">
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Reference Id</th>
+            <th scope="col">Rider username</th>
+            <th scope="col">date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of completedRides;let index=index;">
+            <td>{{index+1}} </td>
+            <td>{{booking.from}} </td>
+            <td>{{booking.to}} </td>
+            <td>{{booking.mid}} </td>
+            <td>{{booking.vehicleUsername}} </td>
+            <td>{{booking.date}} </td>
+            
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+<div class="d-flex justify-content-center">
+
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>

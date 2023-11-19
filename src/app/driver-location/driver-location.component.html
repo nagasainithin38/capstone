@@ -1,0 +1,7 @@
+<div style="margin-top: 20px;"> 
+
+</div>
+<button *ngIf="showMap"  class="btn btn-success" (click)="refreshMap()" >Refresh</button>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<app-shared-map *ngIf="showMap" [latitude]="latitude" [longitude]="longitude"></app-shared-map>

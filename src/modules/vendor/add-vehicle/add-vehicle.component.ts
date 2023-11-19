@@ -55,18 +55,18 @@ export class AddVehicleComponent {
       this.toast.error("Number Plate is required")
       return
     }
-    console.error(1)
+
     let vehicle:any={
       number_plate: this.vehicleForm.get('numberplate')?.value,
-      username: "string",
-      vendor_username: "string", 
+      username: this.vehicleForm.get('username')?.value,
+      vendor_username:this.user.user.userr?.username , 
       images: [],
       completedRides: [], 
       upcomingRide: [],
       latitude: 0,
       longitude: 0, 
     }
-    console.error(2)
+ 
     let userr:any={
       role:"vehicle",
       username:this.vehicleForm.get('username')?.value,
@@ -76,12 +76,12 @@ export class AddVehicleComponent {
       number:this.vehicleForm.get('number')?.value,
       code:this.user.user.userr?.code??""
     }
-    console.error(3)
+    
     let body:UserVendorDto={
       vehicle:vehicle,
       userr:userr
     }
-    console.error(4)
+
     this.isLoading=true;
     this.http.signin(body).subscribe(
       (data)=>{

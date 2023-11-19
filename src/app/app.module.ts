@@ -20,6 +20,11 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ToastrModule } from 'ngx-toastr';
+import { DriverLocationComponent } from './driver-location/driver-location.component';
+import { SharedMapComponent } from './shared-map/shared-map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { VerifiyComponent } from './unv/verifiy/verifiy.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +34,12 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    SideNavbarComponent
+    SideNavbarComponent,
+    DriverLocationComponent,
+    SharedMapComponent,
+    VerifiyComponent,
+    
+
   ],
   imports: [
     BrowserModule,
@@ -44,7 +54,11 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot(),
+    LeafletModule
+
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

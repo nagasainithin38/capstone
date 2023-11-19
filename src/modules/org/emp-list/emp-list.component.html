@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center ">
+
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+<div *ngIf="!isLoading" class="sc-hidden">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">number</th>
+            <th scope="col">upcoming rideId</th>
+            <th scope="col">Completed Rides</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of data;let idx=index" >
+            <td>{{idx+1}}</td>
+            <td>{{user.userr?.username}} </td>
+            <td>{{user.userr?.name}} </td>
+            <td>{{user.userr?.email}} </td>
+            <td>{{user.userr?.number??"Number not available"}} </td>
+            <td>{{user.employee?.to_home_ride??"No ride"}} </td>
+            <td>{{user.employee?.completedRides?.length}} </td>
+            <td> <button (click)="delete(user.userr?.username,idx)" class="btn btn-danger">Remove User</button> </td>
+          </tr>
+        
+        </tbody>
+      </table>
+</div>

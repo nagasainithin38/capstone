@@ -7,6 +7,7 @@ export interface Vehicle {
     completedRides: any[]; 
     upcomingRide: any[]; 
     latitude: number; 
-    longitude: number; 
+    longitde: number;
+    currRide?:string|null|undefined;  
     MID: any; 
 }

@@ -5,6 +5,7 @@ import { VerifiedComponent } from './verified/verified.component';
 import { PnfComponent } from './pnf/pnf.component';
 import { LoginComponent } from './unv/login/login.component';
 import { RegisterComponent } from './unv/register/register.component';
+import { DriverLocationComponent } from './driver-location/driver-location.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
     path:'unv',
     component:UnverifiedComponent,
     children:[
+      
       {
         path:'login',
         component:LoginComponent
@@ -26,6 +28,10 @@ const routes: Routes = [
         pathMatch:'full'
       },
       {
+        path:"maps",
+        component:DriverLocationComponent
+      },
+      {
         path:"**",
         component:PnfComponent
       }
@@ -35,6 +41,7 @@ const routes: Routes = [
     path:'v',
     component:VerifiedComponent,
     children:[
+    
       { path: 'admin', loadChildren: () => import('../modules/admin/admin.module').then(m => m.AdminModule),  },
       { path: 'vendor', loadChildren: () => import('../modules/vendor/vendor.module').then(m => m.VendorModule), },
       { path: 'vehicle', loadChildren: () => import('../modules/vehicle/vehicle.module').then(m => m.VehicleModule) ,},

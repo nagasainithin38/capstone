@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center align-items-center">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+
+</div>
+
+    
+<div *ngIf="!isLoading" class="d-flex gap-2 flex-wrap p-3">
+    <div>
+        <select class="form-select " aria-label="Default select example" [value]="selectedValue" (change)="optionChanged($event)">
+            <option *ngFor="let name of organisationList" [value]="name" >{{name}}</option>
+            
+        </select>
+    </div>
+
+    <button class="btn btn-primary" (click)="search()">Search</button>
+
+
+
+    
+    <table  class="table table-hover w-100">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Date</th>
+           
+
+          </tr>
+        </thead>
+        <div *ngIf="isTableLoading" class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+        <tbody *ngIf="!isTableLoading">
+          <tr *ngFor="let booking of pendingBookingList;let index=index">
+            <th scope="row">
+                <input type="checkbox" (change)="checkBox($event,index)">
+            </th>
+            <td>{{index+1}}</td>
+            <td>{{booking.from}} </td>
+            <td>{{booking.to}} </td>
+            <td>{{booking.date}} </td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+      
+      <div class="d-flex justify-content-center w-100" *ngIf="pendingBookingList.length>0 ">
+          <button class="btn btn-primary" [disabled]=" checkedList.length==0" (click)="book()" >Book cab</button>
+    </div>
+
+
+</div>

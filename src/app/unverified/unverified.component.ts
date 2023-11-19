@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Userr } from 'src/models/userr';
+import { HttpService } from 'src/services/http.service';
 
 @Component({
   selector: 'app-unverified',
@@ -6,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./unverified.component.css']
 })
 export class UnverifiedComponent {
+
+
+
+
+
 
 }

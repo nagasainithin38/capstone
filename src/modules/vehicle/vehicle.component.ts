@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ReqStatus } from 'src/models/statMsg';
+import { Userr } from 'src/models/userr';
+import { UserVendorDto } from 'src/models/uservendDto';
+import { Vehicle } from 'src/models/vehicle';
+import { HttpService } from 'src/services/http.service';
+import { LoginService } from 'src/services/login.service';
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
@@ -7,4 +15,84 @@ import { Component } from '@angular/core';
 })
 export class VehicleComponent {
 
+  isLoading = false
+  signInForm: FormGroup
+  disabled = true
+  constructor(private router: Router, private toast: ToastrService, private http: HttpService, private loggedInuser: LoginService) {
+
+    this.signInForm = new FormGroup({
+      name: new FormControl(loggedInuser.user.userr?.name ?? "", Validators.required),
+      number: new FormControl(loggedInuser.user.userr?.number ?? "", Validators.required),
+      username: new FormControl(loggedInuser.user.userr?.username ?? "", Validators.required),
+      email: new FormControl(loggedInuser.user.userr?.email ?? "", Validators.required),
+      code: new FormControl(loggedInuser.user.userr?.code ?? "", Validators.required),
+      number_plate:new FormControl(loggedInuser.user.vehicle?.number_plate??"",Validators.required)
+    
+
+    })
+
+  }
+  update() {
+    if (!this.signInForm.get("name")?.valid) {
+      this.toast.warning("Name is required")
+      return
+    }
+    if (!this.signInForm.get("number")?.valid) {
+      this.toast.warning("Phone number is required")
+      return
+    }
+    if (!this.signInForm.get("email")?.valid) {
+      this.toast.warning("Email is required")
+      return
+    }
+    if (!this.signInForm.get("number_plate")?.valid) {
+      this.toast.warning("Email is required")
+      return
+    }
+    let user: Userr = {
+      username: this.loggedInuser.user.userr?.username ?? "",
+      name: this.signInForm.get('name')?.value,
+      email: this.signInForm.get('email')?.value,
+      number: (this.signInForm.get('number')?.value).toString(),
+      role: "vendor",
+      code: this.loggedInuser.user.userr?.code ?? "",
+      password: ""
+    }
+
+    let vehicle:Vehicle={
+      number_plate: this.signInForm.get("number_plate")?.value,
+      id: null,
+      username: this.loggedInuser.user.userr?.username ?? "",
+      vendor_username: this.loggedInuser.user.vehicle?.vendor_username ?? "",
+      images: [],
+      completedRides: [],
+      upcomingRide: [],
+      latitude: 0,
+      longitde: 0,
+      MID: undefined
+    }
+    let body: UserVendorDto = {
+      userr: user,
+      vehicle:vehicle
+    }
+
+    this.isLoading = true
+    this.http.updateOrg(body).subscribe(
+      (data) => {
+        this.isLoading = false
+        if (data.status == ReqStatus.SUCCESS) {
+          this.toast.success(data.message)
+        }
+        else {
+          this.toast.error("Error occured")
+        }
+      },
+      (err) => {
+        this.isLoading = false
+        this.toast.error(err.message)
+      }
+    )
+
+  }
 }
+

@@ -1,0 +1,90 @@
+<div *ngIf="!isLoading" class="d-flex justify-content-center align-items-center ">
+    <form *ngIf="referenceId==null" style="background-color:#f4f0f0;padding:20px;margin-top: 10px;" [formGroup]="bookCabForm" >
+
+        <div class="gap-3">
+            <div class="mb-3">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-control" formControlName="address">
+            </div>
+        </div>
+        <div class="gap-3">
+            <div class="mb-3">
+                <label class="form-label">street name</label>
+                <input type="text" class="form-control" formControlName="street">
+            </div>
+        </div>
+        <div class="gap-3">
+            <div class="mb-3">
+                <label class="form-label">land mark</label>
+                <input type="text" class="form-control" formControlName="landmark">
+            </div>
+        </div>
+        <div class="gap-3">
+            <div class="mb-3">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" formControlName="city">
+            </div>
+        </div>
+      
+        <div class="gap-3">
+            <div class="mb-3">
+                <label class="form-label">Pincode</label>
+                <input type="number" class="form-control" formControlName="pincode">
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+
+            <button class="btn btn-primary" (click)="bookCab()">Book cab</button>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="referenceId!=null && !isLoading" class="d-flex  justify-content-center">
+
+    <table class="table table-hover">
+      
+        <tbody>
+          <tr>
+            <th scope="row">Booking Id</th>
+            <td> {{referenceId}} </td>
+       
+          </tr>
+          <tr>
+            <th scope="row">Pickup</th>
+            <td>{{rideDetais?.from}} </td>
+        
+         
+          </tr>
+          <tr>
+            <th scope="row">Drop </th>
+            <td colspan="2" >{{rideDetais?.to}} </td>
+          </tr>
+          <tr>
+            <th scope="row">Date
+            </th>
+            <td colspan="2" >{{rideDetais?.date}} </td>
+          </tr>
+          <tr>
+            <th scope="row">Status </th>
+            <td colspan="2" >{{rideDetais?.status}} </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+</div>
+
+<div class="d-flex flex-wrap gap-3 mb-2" *ngIf="showMap">
+
+    
+    <button  class="btn btn-success" (click)="refreshMap()" >Refresh</button>
+    
+    <button   class="btn btn-primary" (click)="share()" >share Ride</button>
+
+    <button class="btn btn-danger" (click)="sos()" > SOS </button>
+
+</div>
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<app-maps *ngIf="showMap" [latitude]="latitude" [longitude]="longitude"></app-maps>
